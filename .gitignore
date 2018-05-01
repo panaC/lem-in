@@ -1,0 +1,17 @@
+src/.*
+a.out
+*.trace
+*.log
+Show_Filler/*
+Show_Filler
+filler_vm
+players/*
+players
+maps/*
+maps
+st.sh
+pleroux.filler
+filler.pdf
+.*~
+src/*.o
+*.dSYM

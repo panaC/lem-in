@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 15:12:06 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/01 15:19:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		parser(t_env *e, t_string l)
 	static int		i = 0;
 
 	ft_putstr(l);
-	if (parser_is_comment(l))
+	if (parser_is_comment(l) ||
+			(!ft_strequ(l, COM_START) && !ft_strequ(l, COM_END)))
 		return (i);
 	if (i == 0)
 		i = parser_nb_ant(e, l);
@@ -43,6 +44,10 @@ int		parser_room(t_env *e, t_string l)
 	static e_type	i = EMPTY;
 	int				nb[2];
 	t_string		ss;
+
+	/*
+	 * TESTER DEBUT L
+	 */
 
 	if (l && *l && ft_strlen(l) >= 5 && ft_strnbchr(l , ' ') == 2 &&
 			ft_strnbchr(l, '-') == 0)

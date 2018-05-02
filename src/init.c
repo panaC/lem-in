@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:59:46 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 18:59:12 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/02 15:48:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		init_room(t_room *r, t_uint32 id, t_string s, t_e_type type)
 	r->name = s;
 	r->id_ant = 0;
 	r->nb_ant = 0;
-	r->type = type;	
+	r->type = type;
 }
 
 t_room		room_create(t_uint32 id, t_string s, t_e_type type, t_point loc)
@@ -44,6 +44,6 @@ void		room_add_lst(t_lst **l, t_string s, t_point loc)
 {
 	t_room	a;
 
-	a = room_create(ft_lstlen(*l) + 2, s, NODE, loc);
+	a = room_create(ft_lstlen(*l), s, NODE, loc);
 	ft_lstadd(l, ft_lstnew(&a, sizeof(a));
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 19:00:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/02 16:11:14 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ int		parser_room(t_env *e, t_string l)
 		i = START;
 	else if (l && ft_strequ(l, COM_END) && i == EMPTY)
 		i = END;
-	else if (l && /*pipe valide*/)
-				/*
-				 * TESTER SI ROOM DROITE EST VALIDE ET '-' ET ROOM GAUCHE VALIDE
-				 * 		ALORS PASSER A L'ETAPE 2
-				 */
+	else if (l && parser_room_is_valid(l))
 		parser_pipe(e, l);
 	else if (l && *l && ft_strlen(l) >= 5 && l[0] != 'L')
 	{
@@ -76,14 +72,14 @@ int		parser_room(t_env *e, t_string l)
 						{
 							/* ADD the Room start*/
 							i = EMPTY;
-							init_room(&(e->room_start), 0, ss, START);
+							init_room(&(e->room_start), -1, ss, START);
 							e->room_start.loc = loc;
 						}
 						else if (i == END)
 						{
 							/* ADD the Room end*/
 							i = EMPTY;
-							init_room(&(e->room_end), 1, ss, END);
+							init_room(&(e->room_end), -2, ss, END);
 							e->room_end.loc = loc;
 						}
 						else
@@ -128,27 +124,40 @@ int		parser_room(t_env *e, t_string l)
 int		parser_pipe(t_env *e, t_string l)
 {
 	static int			i = 0;
+	t_string			*tab;
 
 	if (i == 0)
 	{
-		l = ft_strchr(l, ' ');
-		e->piece_y = ft_atoi(l);
-		e->piece_x = ft_atoi((l == NULL ? NULL : ft_strchr(l + 1, ' ')));
-		if ((e->piece_x == 0 || e->piece_y == 0))
-			return (0);
-		ft_bzero(e->piece_offset, NB_PIECE_OFFSET);
-		e->piece_pixel_bool = FALSE;
-		e->piece_offset_size = 0;
+		e->mat_size = ft_lstlen(e->lst_room);
+		/*if (e->room_start.id == -1 && e->room_end.id == -2)
+		{*/
+			e->mat_adj = (t_string)ft_memalloc(e->mat_size);
+			if (e->mat_adj)
+				ft_memset(e->mat_adj, '0', e->mat_size);
+			else
+			{
+				printf("ERROR : Memory error\n");
+			}
+		/*}
+		else
+		{
+			printf("ERROR : Room Start or End has not set\n");
+		}*//* Ne pas tester si room start,end set ici mais au debut de l'algo */
 	}
-	else if (ft_strchr(l, '*') != NULL)
-		e->piece_offset_size = parser_piece_shape(e, l, e->piece_offset_size);
-	else
-		e->piece_offset[e->piece_offset_size] += OFFSET_JUMP;
-	if (i == e->piece_y)
+	if (parser_room_is_valid(l))
 	{
-		i = 0;
-		return (3);
+		tab = parser_room_get(l);
+		parser_room_set_mat(ft_lstfind(e->lst_room, (void*)tab[0],
+					parser_cmp_id)->id, ft_lstfind(e->lst_room,
+						(void*)tab[1], parser_cmp_name)->id);
+		ft_memdel((void*)tab[0]);
+		ft_memdel((void*)tab[1]);
+		free(tab);
 	}
-	++i;
+	else
+	{
+		printf("ERROR : Syntax error pipe\n");
+	}
+	i++;
 	return (2);
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 10:52:06 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/02 16:07:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int		main(void)
 	init(&e);
 	while (1)
 	{
-		if (get_next_line(STDIN_FILENO, &line))
+		if (get_next_line(STDIN_FILENO, &line) > 0)
 		{
 			res = parser(&e, line);
 			ft_memdel((void**)&line);
-			if (res == 3 || res == 0)
+			if (res == 0)
 				break;
 		}
+		else
+			break;
 	}
 	ft_memdel((void**)&line);
 	ft_putstr(res == 0 ? "ERROR\n" : "OK\n");

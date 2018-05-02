@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 18:38:38 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/02 15:52:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_point
 
 typedef struct		s_room
 {
-	t_uint32		id;
+	int				id;
 	t_string		name;
 	t_uint32		id_ant;
 
@@ -58,6 +58,7 @@ typedef struct		s_env
 	 * PIPE
 	 */
 	t_string		*mat_adj;
+	size_t			mat_size;
 
 }					t_env;
 

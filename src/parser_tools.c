@@ -6,14 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:08:19 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/01 18:21:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/02 17:49:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <stdio.h>
 #include <libft.h>
 #include "parser.h"
-#include "filler.h"
+#include "lemin.h"
 
 t_bool			parser_is_comment(t_string l)
 {
@@ -38,7 +38,7 @@ void			*parser_cmp_id(void *elem, void *data)
 	t_room		*room;
 
 	room = (t_room*)elem;
-	if (room->id, (t_uint32)data)
+	if (room->id == (int)data)
 		return (elem);
 	return (NULL);
 }

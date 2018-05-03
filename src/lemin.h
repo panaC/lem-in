@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/03 16:55:55 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/03 17:14:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define LEMIN_H
 # include <string.h>
 # include <libft.h>
-# define STDIN_FILENO 0
-# define COM_START "##start"
-# define COM_END "##end"
+# define STDIN_FILENO	0
 
 typedef enum		e_type
 {

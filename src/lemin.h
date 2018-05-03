@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/02 17:40:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/03 16:55:55 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct		s_env
 	 * ROOM
 	 */
 	t_list			*lst_room;
-	t_room			room_start;
-	t_room			room_end;
+	t_room			*room_start;
+	t_room			*room_end;
 	
 	/*
 	 * PIPE
@@ -62,12 +62,17 @@ typedef struct		s_env
 	t_string		mat_adj;
 	size_t			mat_size;
 
+	/*
+	 * tmp
+	 */
+	t_uint32		nb_ant_start;
+
 }					t_env;
 
 int			init(t_env *e);
 void		init_room(t_room *r, t_uint32 id, t_string s, t_e_type type);
-t_room		room_create(t_uint32 id, t_string s, t_e_type type, t_point loc);
-void		room_add_lst(t_list **l, t_string s, t_point loc);
+t_room		*room_create(t_uint32 id, t_string s, t_e_type type, t_point loc);
+t_room		*room_add_lst(t_list **l, t_string s, t_point loc, t_e_type type);
 
 
 #endif

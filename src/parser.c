@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/02 19:11:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/03 17:13:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,17 @@ int		parser(t_env *e, t_string l)
 
 	ft_putstr(l);
 	ft_putchar('\n');
-	if (parser_is_comment(l) ||
-			(!(ft_strequ(l, COM_START) || ft_strequ(l, COM_END)) &&
-			l[0] == '#' && l[1] && l[1] == '#'))
-		return (i);
+	if (parser_is_comment(l))
+	{
+		if (l[0] == '#' && l[1] && l[1] == '#')
+		{
+			if (!ft_strequ(l, COM_START) && !ft_strequ(l, COM_END))
+			{
+				ft_putstr(l);
+				return (i);
+			}
+		}
+	}
 	if (i == START_CODE)
 		i = parser_nb_ant(e, l);
 	else if (i == ROOM_CODE)
@@ -46,7 +53,7 @@ int		parser_nb_ant(t_env *e, t_string l)
 	{
 		if (ft_atoi(l) > 0)
 		{
-			e->room_start.nb_ant = ft_atoi(l);
+			e->nb_ant_start = ft_atoi(l);
 			return (ROOM_CODE);
 		}
 		else
@@ -70,10 +77,16 @@ int		parser_room(t_env *e, t_string l)
 	t_string		ss;
 
 	ss = NULL;
-	if (l && ft_strequ(l, COM_START) && i == EMPTY)
+	if (ft_strequ(l, COM_START) && i == EMPTY)
+	{
 		i = START;
-	else if (l && ft_strequ(l, COM_END) && i == EMPTY)
+		return (ROOM_CODE);
+	}
+	else if (ft_strequ(l, COM_END) && i == EMPTY)
+	{
 		i = END;
+		return (ROOM_CODE);
+	}
 	else if (l && parser_room_is_valid(e->lst_room, l))
 		return (parser_pipe(e, l));
 	else if (l && *l && ft_strlen(l) >= 5 && l[0] != 'L')
@@ -95,22 +108,32 @@ int		parser_room(t_env *e, t_string l)
 					{
 						if (i == START)
 						{
+							printf("START\n");
 							/* ADD the Room start*/
 							i = EMPTY;
-							init_room(&(e->room_start), -1, ss, START);
+							/*init_room(&(e->room_start),
+									ft_lstlen(e->lst_room), ss, START);
 							e->room_start.loc = loc;
+							ft_lstadd(&(e->lst_room), &(e->room_start));*/
+							e->room_start = room_add_lst(&(e->lst_room),
+									ss, loc, START);
 						}
 						else if (i == END)
 						{
+							
+							printf("END\n");
 							/* ADD the Room end*/
 							i = EMPTY;
-							init_room(&(e->room_end), -2, ss, END);
+							/*init_room(&(e->room_end), ft_lstlen(e->lst_room), ss, END);
 							e->room_end.loc = loc;
+							ft_lstadd(&(e->lst_room), &(e->room_end));*/
+							e->room_end = room_add_lst(&(e->lst_room),
+									ss, loc, END);
 						}
 						else
 						{
 							/* ADD the Room dans la liste chainee */
-							room_add_lst(&(e->lst_room), ss, loc);
+							room_add_lst(&(e->lst_room), ss, loc, NODE);
 						}
 						//abort
 						//ft_memdel((void**)ss);

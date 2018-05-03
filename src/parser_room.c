@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 15:10:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/02 19:22:01 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/03 16:00:12 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,14 @@ t_bool			parser_room_set_mat(t_env *e, int i1, int i2)
 	e->mat_adj[i1 * e->mat_size + i2] = '1';
 	e->mat_adj[i2 * e->mat_size + i1] = '1';
 	return (TRUE);
+}
+
+t_string		parser_room_get_name(t_env *e, int id)
+{
+	t_room		*ret;
+	
+	ret = (t_room*)ft_lstfind(e->lst_room, (void*)&id, parser_cmp_id);
+	if (ret)
+		return (ret->name);
+	return (NULL);
 }

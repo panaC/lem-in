@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/03 16:50:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 16:52:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		main(void)
 			{
 				if (e.mat_adj[i] == '1')
 				{
+					printf("id %ld id %ld\n",  i / e.mat_size, i % e.mat_size);
 					printf("%s-%s\n", parser_room_get_name(&e, i / e.mat_size),
 							parser_room_get_name(&e, i % e.mat_size));
 				}

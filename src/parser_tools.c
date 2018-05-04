@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:08:19 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/02 17:49:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 16:57:33 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 t_bool			parser_is_comment(t_string l)
 {
-	if (l && *l && (l[0] == '#' ||
-			(ft_strlen(l) > 1 && l[0] == '#' && l[1] != '#')))
+	if (l && *l && l[0] == '#' && l[1] && l[1] != '#')
 		return (TRUE);
 	return (FALSE);
 }
@@ -38,7 +37,7 @@ void			*parser_cmp_id(void *elem, void *data)
 	t_room		*room;
 
 	room = (t_room*)elem;
-	if (room->id == (int)data)
+	if (room->id == *(int*)data)
 		return (elem);
 	return (NULL);
 }

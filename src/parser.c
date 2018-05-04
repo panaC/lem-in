@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/03 17:13:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 16:54:03 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int		parser(t_env *e, t_string l)
 	ft_putchar('\n');
 	if (parser_is_comment(l))
 	{
-		if (l[0] == '#' && l[1] && l[1] == '#')
+		return (i);
+	}
+	else if (l[0] == '#' && l[1] && l[1] == '#')
+	{
+		if (!ft_strequ(l, COM_START) && !ft_strequ(l, COM_END))
 		{
-			if (!ft_strequ(l, COM_START) && !ft_strequ(l, COM_END))
-			{
-				ft_putstr(l);
-				return (i);
-			}
+			ft_putstr(l);
+			return (i);
 		}
 	}
 	if (i == START_CODE)
@@ -106,9 +107,9 @@ int		parser_room(t_env *e, t_string l)
 				{
 					if (!ft_lstfind(e->lst_room, (void*)&loc, parser_cmp_loc))
 					{
+						printf("SS %s\n", ss);
 						if (i == START)
 						{
-							printf("START\n");
 							/* ADD the Room start*/
 							i = EMPTY;
 							/*init_room(&(e->room_start),
@@ -121,7 +122,6 @@ int		parser_room(t_env *e, t_string l)
 						else if (i == END)
 						{
 							
-							printf("END\n");
 							/* ADD the Room end*/
 							i = EMPTY;
 							/*init_room(&(e->room_end), ft_lstlen(e->lst_room), ss, END);

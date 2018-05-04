@@ -6,121 +6,76 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 15:10:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 17:31:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 00:06:10 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <libft.h>
 #include <stdlib.h>
+#include <ft_printf.h>
 #include "lemin.h"
 #include "parser.h"
+#include "room.h"
 
-t_bool			parser_room_is_valid(t_list *lst, t_string l)
+t_bool			parser_room_loc(t_string l, t_point *loc)
 {
-	t_string	*tab;
+	int			nb[2];
 
-	tab = NULL;
-	tab = parser_room_get(lst, l);
-	if (tab)
+	l = ft_strchr(l, ' ') + 1;
+	nb[0] = ft_strnlennb(l, ft_strchr(l, ' ') - l);
+	loc->x = ft_atoi(l);
+	l = ft_strchr(l, ' ') + 1;
+	nb[1] = ft_strlennb(l);
+	loc->y = ft_atoi(l);
+	if (nb[0] > 0 && nb[0] < 10 && nb[1] > 0 && nb[1] < 10)
+		return (TRUE);
+	return (FALSE);
+}
+
+t_bool			parser_room_set_list(t_env *e, t_string ss, t_point loc,
+		t_e_type *i)
+{
+	if (!ft_lstfind(e->lst_room, (void*)&loc, room_cmp_loc))
 	{
-		//Abort
-		//printf("FREE\n");
-		//ft_memdel((void*)tab[0]);
-		//ft_memdel((void*)tab[1]);
-		//free(tab);
+		if (*i == START)
+			e->room_start = room_add_lst(&(e->lst_room),
+					ss, loc, START);
+		else if (*i == END)
+			e->room_end = room_add_lst(&(e->lst_room),
+					ss, loc, END);
+		else
+			room_add_lst(&(e->lst_room), ss, loc, NODE);
+		//abort
+		//ft_memdel((void**)ss);
+		*i = EMPTY;
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-t_string		*parser_room_get(t_list *lst, t_string l)
+t_bool			parser_room_line(t_env *e, t_string l, t_e_type *i,
+		t_string *ss)
 {
-	t_string	*tab;
+	t_point		loc;
 
-	if (ft_strnbchr(l , '-') == 1)
+	*ss = ft_strsub(l, 0, ft_strchr(l, ' ') - l);
+	if (ft_strchr(*ss, '-') == 0)
 	{
-		tab = ft_strsplit(l, '-');
-		if (tab)
+		if (!ft_lstfind(e->lst_room, (void*)(*ss), room_cmp_name))
 		{
-			if (ft_lstfind(lst, (void*)tab[0], parser_cmp_name))
+			if (parser_room_loc(l, &loc))
 			{
-				if (ft_lstfind(lst, (void*)tab[1], parser_cmp_name))
-					return (tab);
+				if (parser_room_set_list(e, *ss, loc, i))
+					return (TRUE);
 				else
-				{
-					//printf("ERROR : Room right '%20s' is unknow\n", tab[1]);
-				}
+					ft_sprintf(&e->str_err,
+							"Room X %d, Y %d are already set\n", loc.x, loc.y);
 			}
 			else
-			{
-				//printf("ERROR : Room left '%20s' is unknow\n", tab[0]);
-			}
+				ft_sprintf(&e->str_err, "Syntax error : wrong X or Y\n");
 		}
 		else
-		{
-			//printf("ERROR : Memory error\n");
-		}
+			ft_sprintf(&e->str_err, "Room %.20s is already set\n", *ss);
 	}
-	else
-	{
-		//printf("ERROR : Syntax error pipe %d '-'\n", ft_strnbchr(l , '-'));
-	}
-	return (NULL);
-}
-
-t_string		*parser_room_get_err(t_list *lst, t_string l)
-{
-	t_string	*tab;
-
-	if (ft_strnbchr(l , '-') == 1)
-	{
-		tab = ft_strsplit(l, '-');
-		if (tab)
-		{
-			if (ft_lstfind(lst, (void*)tab[0], parser_cmp_name))
-			{
-				if (ft_lstfind(lst, (void*)tab[1], parser_cmp_name))
-					return (NULL);
-				else
-				{
-					printf("ERROR : Room right '%.20s' is unknow\n", tab[1]);
-				}
-			}
-			else
-			{
-				printf("ERROR : Room left '%.20s' is unknow\n", tab[0]);
-			}
-		}
-		else
-		{
-			printf("ERROR : Memory error\n");
-		}
-	}
-	else
-	{
-		printf("ERROR : Syntax error pipe %d '-'\n", ft_strnbchr(l , '-'));
-	}
-	return (NULL);
-}
-
-
-
-
-t_bool			parser_room_set_mat(t_env *e, int i1, int i2)
-{
-	printf("ID1 %d ID2 %d\n", i1, i2);
-	e->mat_adj[i1 * e->mat_size + i2] = '1';
-	e->mat_adj[i2 * e->mat_size + i1] = '1';
-	return (TRUE);
-}
-
-t_string		parser_room_get_name(t_env *e, int id)
-{
-	t_room		*ret;
-	
-	ret = (t_room*)ft_lstfind(e->lst_room, (void*)&id, parser_cmp_id);
-	if (ret)
-		return (ret->name);
-	return (NULL);
+	return (FALSE);
 }

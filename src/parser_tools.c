@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:08:19 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 16:57:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 23:21:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,10 @@ t_bool			parser_is_comment(t_string l)
 	return (FALSE);
 }
 
-void			*parser_cmp_name(void *elem, void *data)
+t_bool			parser_is_command(t_string l)
 {
-	t_room		*room;
-
-	room = (t_room*)elem;
-	if (ft_strequ(room->name, (t_string)data))
-		return (elem);
-	return (NULL);
-}
-
-void			*parser_cmp_id(void *elem, void *data)
-{
-	t_room		*room;
-
-	room = (t_room*)elem;
-	if (room->id == *(int*)data)
-		return (elem);
-	return (NULL);
-}
-
-void			*parser_cmp_loc(void *elem, void *data)
-{
-	t_room		*room;
-
-	room = (t_room*)elem;
-
-	if (room->loc.x == ((t_point*)data)->x && room->loc.y == ((t_point*)data)->y)
-		return (elem);
-	return (NULL);
+	if (l[0] == '#' && l[1] && l[1] == '#' &&
+				!ft_strequ(l, COM_START) && !ft_strequ(l, COM_END))
+		return (TRUE);
+	return (FALSE);
 }

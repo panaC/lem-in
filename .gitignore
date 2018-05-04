@@ -8,3 +8,4 @@ pdf/
 src/*.o
 *.dSYM
 .DS_Store
+**/*.bak

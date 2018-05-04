@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 16:52:04 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 22:29:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <stdlib.h>
 #include <libft.h>
 #include <get_next_line.h>
+#include <ft_printf.h>
 #include "lemin.h"
 #include "parser.h"
+#include "room.h"
 
 int		main(void)
 {
@@ -37,43 +39,39 @@ int		main(void)
 			break;
 	}
 	ft_memdel((void**)&line);
-	ft_putstr(res == 0 ? "ERROR\n" : "OK\n");
-	if (res != 0)
+	t_list *j = e.lst_room;
+	t_room *a = NULL;
+	while (j)
 	{
+		a = (t_room*)j->content;
+		if (a)
+			printf("id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
+		j = j->next;
 
-		t_list *j = e.lst_room;
-		t_room *a = NULL;
-		while (j)
+	}
+
+	printf("MATRICE :%ld:%ld: \n%s\n", e.mat_size, ft_strlen(e.mat_adj), e.mat_adj);
+
+	if (e.room_start && e.room_end)
+	{
+		e.room_start->nb_ant = e.nb_ant_start;
+		/*ok*/
+		size_t i = 0;
+		while (i < ft_strlen(e.mat_adj))
 		{
-			a = (t_room*)j->content;
-			if (a)
-				printf("id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
-			j = j->next;
-			
-		}
-
-		printf("MATRICE :%ld:%ld: \n%s\n", e.mat_size, ft_strlen(e.mat_adj), e.mat_adj);
-
-		if (e.room_start && e.room_end)
-		{
-			e.room_start->nb_ant = e.nb_ant_start;
-			/*ok*/
-			size_t i = 0;
-			while (i < ft_strlen(e.mat_adj))
+			if (e.mat_adj[i] == '1')
 			{
-				if (e.mat_adj[i] == '1')
-				{
-					printf("id %ld id %ld\n",  i / e.mat_size, i % e.mat_size);
-					printf("%s-%s\n", parser_room_get_name(&e, i / e.mat_size),
-							parser_room_get_name(&e, i % e.mat_size));
-				}
-				i++;
+				printf("id %ld id %ld\n",  i / e.mat_size, i % e.mat_size);
+				printf("%s-%s\n", room_get_name(&e, i / e.mat_size),
+						room_get_name(&e, i % e.mat_size));
 			}
-		}
-		else
-		{
-			printf("ERROR : Room Start or End are not set\n");
+			i++;
 		}
 	}
+	else
+	{
+		printf("ERROR : Room Start or End are not set\n");
+	}
+	ft_printf("ERROR : %s\n", e.str_err);
 	return (0);
 }

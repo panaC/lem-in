@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 16:54:03 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 17:31:59 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int		parser_room(t_env *e, t_string l)
 				{
 					if (!ft_lstfind(e->lst_room, (void*)&loc, parser_cmp_loc))
 					{
-						printf("SS %s\n", ss);
 						if (i == START)
 						{
 							/* ADD the Room start*/
@@ -153,7 +152,7 @@ int		parser_room(t_env *e, t_string l)
 			}
 			else
 			{
-				printf("ERROR : Room '%20s' is already set\n", ss);
+				printf("ERROR : Room '%.20s' is already set\n", ss);
 			}
 		}
 		else
@@ -214,7 +213,7 @@ int		parser_pipe(t_env *e, t_string l)
 	}
 	else
 	{
-		printf("ERROR : Syntax error pipe\n");
+		parser_room_get_err(e->lst_room, l);
 	}
 	return (ERROR_CODE);
 }

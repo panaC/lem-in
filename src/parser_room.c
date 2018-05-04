@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 15:10:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 16:57:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/04 17:31:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,44 @@ t_string		*parser_room_get(t_list *lst, t_string l)
 	}
 	return (NULL);
 }
+
+t_string		*parser_room_get_err(t_list *lst, t_string l)
+{
+	t_string	*tab;
+
+	if (ft_strnbchr(l , '-') == 1)
+	{
+		tab = ft_strsplit(l, '-');
+		if (tab)
+		{
+			if (ft_lstfind(lst, (void*)tab[0], parser_cmp_name))
+			{
+				if (ft_lstfind(lst, (void*)tab[1], parser_cmp_name))
+					return (NULL);
+				else
+				{
+					printf("ERROR : Room right '%.20s' is unknow\n", tab[1]);
+				}
+			}
+			else
+			{
+				printf("ERROR : Room left '%.20s' is unknow\n", tab[0]);
+			}
+		}
+		else
+		{
+			printf("ERROR : Memory error\n");
+		}
+	}
+	else
+	{
+		printf("ERROR : Syntax error pipe %d '-'\n", ft_strnbchr(l , '-'));
+	}
+	return (NULL);
+}
+
+
+
 
 t_bool			parser_room_set_mat(t_env *e, int i1, int i2)
 {

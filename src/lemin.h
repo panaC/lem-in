@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 22:27:12 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 03:27:01 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <string.h>
 # include <libft.h>
 # define STDIN_FILENO	0
+# define NB_PATH		100
 
 typedef enum		e_type
 {
@@ -66,8 +67,20 @@ typedef struct		s_env
 	t_uint32		nb_ant_start;
 	t_string		str_err;
 
+	/*
+	 * path
+	 */
+	t_list			*tab_path[NB_PATH];
+	size_t			tab_path_size;
+
 }					t_env;
 
 int			init(t_env *e);
+
+/*
+ * del.c
+ */
+void		del_lst_node_empty(void *a, size_t b);
+void		del_lst_node(void *a, size_t b);
 
 #endif

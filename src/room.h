@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:10:23 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 23:01:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 03:06:00 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_string	room_get_name(t_env *e, int id);
 void		init_room(t_room *r, t_uint32 id, t_string s, t_e_type type);
 t_room		*room_create(t_uint32 id, t_string s, t_e_type type, t_point loc);
 t_room		*room_add_lst(t_list **l, t_string s, t_point loc, t_e_type type);
+void		room_push_lst(t_list **l, t_room *a);
 
 /*
  * room_cmp.c

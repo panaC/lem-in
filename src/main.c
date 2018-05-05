@@ -6,11 +6,10 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 22:29:51 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 02:29:34 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <libft.h>
 #include <get_next_line.h>

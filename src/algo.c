@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:27:35 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 23:35:51 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 23:40:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ t_bool			algo_pathfinder(t_env *e)
 			/*
 			 * free previous et actual
 			 */
+			if (previous)
+				ft_lstdel(&previous, del_lst_node_empty);
+			if (actual)
+				ft_lstdel(&actual, del_lst_node_empty);
 			previous = NULL;
 			actual = NULL;
 		}
@@ -129,6 +133,10 @@ t_bool			algo_pathfinder(t_env *e)
 			/*
 			 * free previous et actual
 			 */
+			if (previous)
+				ft_lstdel(&previous, del_lst_node_empty);
+			if (actual)
+				ft_lstdel(&actual, del_lst_node_empty);
 			if (e->tab_path_size)
 				return (TRUE);
 			return (FALSE);

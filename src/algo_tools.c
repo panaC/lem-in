@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:45:56 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 21:27:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 23:17:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ t_bool		path_tab_node_id_is_used(t_env *e, int id)
 		++i;
 	}
 	return (FALSE);
+}
+
+t_bool		path_tab_check_size_one(t_env *e)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < e->tab_path_size)
+	{
+		if (ft_lstlen(e->tab_path[i]) == 1)
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
+
 }

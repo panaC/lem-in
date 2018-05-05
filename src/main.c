@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 21:20:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 23:36:35 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,39 @@ int		main(void)
 	}
 	ft_memdel((void**)&line);
 	ft_putchar('\n');
-	/********************************/
-	printf("Node : \n");
+//	/********************************/
+//	printf("Node : \n");
 	t_list *j = e.lst_room;
 	t_room *a = NULL;
-	while (j)
-	{
-		a = (t_room*)j->content;
-		if (a)
-			printf("id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
-		j = j->next;
-	}
-	/********************************/
-	printf("----------------------------------\n");
-	printf("MATRICE :%ld:%ld: \n%s\n", e.mat_size, ft_strlen(e.mat_adj), e.mat_adj);
-	printf("----------------------------------\n");
+//	while (j)
+//	{
+//		a = (t_room*)j->content;
+//		if (a)
+//			printf("id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
+//		j = j->next;
+//	}
+//	/********************************/
+//	printf("----------------------------------\n");
+//	printf("MATRICE :%ld:%ld: \n%s\n", e.mat_size, ft_strlen(e.mat_adj), e.mat_adj);
+//	printf("----------------------------------\n");
 	if (e.room_start && e.room_end)
 	{
 		e.room_start->nb_ant = e.nb_ant_start;
 		/*ok*/
-		/*******************************************/
-		printf("Pipe : \n");
-		size_t i = 0;
-		while (i < ft_strlen(e.mat_adj))
-		{
-			if (e.mat_adj[i] == '1')
-			{
-				printf("id %ld id %ld -> ",  i / e.mat_size, i % e.mat_size);
-				printf("%s-%s\n", room_get_name(&e, i / e.mat_size),
-						room_get_name(&e, i % e.mat_size));
-			}
-			i++;
-		}
-		/*****************************************/
+//		/*******************************************/
+//		printf("Pipe : \n");
+//		size_t i = 0;
+//		while (i < ft_strlen(e.mat_adj))
+//		{
+//			if (e.mat_adj[i] == '1')
+//			{
+//				printf("id %ld id %ld -> ",  i / e.mat_size, i % e.mat_size);
+//				printf("%s-%s\n", room_get_name(&e, i / e.mat_size),
+//						room_get_name(&e, i % e.mat_size));
+//			}
+//			i++;
+//		}
+//		/*****************************************/
 		if (algo_pathfinder(&e))
 		{
 			printf("PATH : %ld chemin(s) trouve\n", e.tab_path_size);

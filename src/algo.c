@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:27:35 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 22:22:34 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 23:35:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@
 //
 
 
-static void print(t_list *l)
-{
-	/*************/
-	t_list *j = l;
-	t_room *b = NULL;
-	int		i = 0;
-	while (j)
-	{
-		b = (t_room*)j->content;
-		if (b)
-			printf("%d : id %d name %s x %d y %d\n", i, b->id, b->name, b->loc.x, b->loc.y);
-		j = j->next;
-		i++;
-	}
-	/*******************/
-}
+//static void print(t_list *l)
+//{
+//	/*************/
+//	t_list *j = l;
+//	t_room *b = NULL;
+//	int		i = 0;
+//	while (j)
+//	{
+//		b = (t_room*)j->content;
+//		if (b)
+//			printf("%d : id %d name %s x %d y %d\n", i, b->id, b->name, b->loc.x, b->loc.y);
+//		j = j->next;
+//		i++;
+//	}
+//	/*******************/
+//}
 
 t_bool			algo_pathfinder(t_env *e)
 {
@@ -98,19 +98,21 @@ t_bool			algo_pathfinder(t_env *e)
 	actual = NULL;
 	while (TRUE)
 	{
-		printf("ft algo_pathfinder (ap):\n");
+//		printf("ft algo_pathfinder (ap):\n");
 		room_push_lst(&actual, NODE_START);
 		bfs_recurs(e, NODE_START->id, &previous, &actual);
-		if (previous)
+		if (previous && !path_tab_check_size_one(e))
 		{
-			printf("ap : Previous is set\n");
+//			printf("ap : Previous is set\n");
 			/*
 			 * stockage de la liste previous dans tab_path
 			 */
+			if (e->tab_path_size > NB_PATH)
+				return (TRUE);
 			e->tab_path[e->tab_path_size] = NULL;
 			ft_lstcpy(previous, &(e->tab_path[e->tab_path_size]));
 			++e->tab_path_size;
-			printf("ap : add previous dans tab_path\n");
+//			printf("ap : add previous dans tab_path\n");
 			/*
 			 * free previous et actual
 			 */
@@ -119,7 +121,7 @@ t_bool			algo_pathfinder(t_env *e)
 		}
 		else
 		{
-			printf("ap : previous not set -> QUIT\n");
+//			printf("ap : previous not set -> QUIT\n");
 			/*
 			 * Aucun nouveau chemin trouve
 			 * Verifier si il y a des chemins dans tab_path
@@ -142,31 +144,32 @@ void			bfs_recurs(t_env *e, int id, t_list **prev, t_list **actl)
 	t_room		*a;
 
 	i = pos;
-	printf("ft bfs : pos %d\n", pos);
+//	printf("ft bfs : pos %d\n", pos);
 	while (i < pos + e->mat_size)
 	{
-		printf("bfs : i %d\n", i);
+//		printf("bfs : i %d\n", i);
 		/*
 		 * Recherche des '1' sur la ligne id de la matrice
 		 */
 		if (e->mat_adj[i] == '1')
 		{
 			id = i % e->mat_size;
-			printf("bfs : id %d\n", id);
+//			printf("bfs : id %d\n", id);
 			if (id == NODE_END->id)
 			{
 				/*
 				 * Le chemin a ete trouve
 				 */
-				printf("bfs : NODE_END trouve id %d\n", id);
+//				printf("bfs : NODE_END trouve id %d\n", id);
 				if (*prev == NULL || ft_lstlen(*actl) < ft_lstlen(*prev))
 				{
-					printf("bfs : actl < prev -> cpy actl dans prev\n");
+//					printf("bfs : actl < prev -> cpy actl dans prev\n");
 					if (*prev)
 						ft_lstdel(prev, del_lst_node_empty);
 					*prev = NULL;
 					ft_lstcpy(*actl, prev);
 				}
+				//room_push_lst(actl, NODE_END);
 				return ;
 			}
 			else if (!path_tab_node_id_is_used(e, id))
@@ -180,22 +183,22 @@ void			bfs_recurs(t_env *e, int id, t_list **prev, t_list **actl)
 				 * pour ne pas tourner en rond bloque le retour en arriere
 				 * de la recherche
 				 */
-				printf("bfs : !path_tab_node_id_is_used id %d\n", id);
+//				printf("bfs : !path_tab_node_id_is_used id %d\n", id);
 
 				a = (t_room*)ft_lstfind(*actl, (void*)&id, room_cmp_id);
 				if (!a)
 				{
-					printf("bfs : l'id pas trouve dans la liste actl id %d\n", id);
+//					printf("bfs : l'id pas trouve dans la liste actl id %d\n", id);
 					/*
 					 * ajout du node dans la liste actual pour bfs_recurs
 					 */
 					a = (t_room*)ft_lstfind(e->lst_room, (void*)&id, room_cmp_id);
 					if (a)
 					{
-						printf("bfd : node -> id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
+//						printf("bfd : node -> id %d name %s x %d y %d\n", a->id, a->name, a->loc.x, a->loc.y);
 						room_push_lst(actl, a);
-						print(*actl);
-						printf("bfs : start recurs id %d\n", id);
+//						print(*actl);
+//						printf("bfs : start recurs id %d\n", id);
 						bfs_recurs(e, id, prev, actl);
 						/*
 						 * del le maillon at (id) dans la liste actual pour
@@ -207,7 +210,7 @@ void			bfs_recurs(t_env *e, int id, t_list **prev, t_list **actl)
 						 * supprime le dernier node pour pouvoir repartir dans
 						 * une nouvelle branche
 						 */
-						printf("bfs : end recurs -> lstpull %d\n", id);
+//						printf("bfs : end recurs -> lstpull %d\n", id);
 						ft_lstpull(actl);
 					}
 				}

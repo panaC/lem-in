@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 03:27:01 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 21:27:29 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int			init(t_env *e);
 /*
  * del.c
  */
-void		del_lst_node_empty(void *a, size_t b);
+void		del_lst_node_empty(__attribute__ ((unused)) void *a,
+		__attribute__ ((unused)) size_t b);
 void		del_lst_node(void *a, size_t b);
 
 #endif

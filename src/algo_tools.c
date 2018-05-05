@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:45:56 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 02:46:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 21:27:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ t_list		*get_list_under_node(t_env *e)
 			id = i % e->mat_size;
 			ft_lstadd(&(e->lst_room), ft_lstnew((void*)&id, sizeof(id)));
 		}
+		++i;
 	}
 	return (ret);
+}
+
+t_bool		path_tab_node_id_is_used(t_env *e, int id)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < e->tab_path_size)
+	{
+		if (ft_lstfind(e->tab_path[i], (void*)&id, room_cmp_id))
+			return (TRUE);
+		++i;
+	}
+	return (FALSE);
 }

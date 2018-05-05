@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:23:10 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 03:05:34 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 21:08:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_room		*room_create(t_uint32 id, t_string s, t_e_type type, t_point loc)
 t_room		*room_add_lst(t_list **l, t_string s, t_point loc, t_e_type type)
 {
 	t_room	*a;
-	t_list	*n;
 
 	a = room_create(ft_lstlen(*l), s, type, loc);
 	if (a)

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:59:46 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 22:24:41 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/05 21:27:31 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int			init(t_env *e)
 	e->room_start = NULL;
 	e->room_end = NULL;
 	e->str_err = NULL;
+	e->tab_path_size = 0;
+	e->nb_ant_start = 0;
+	e->mat_size = 0;
 	return (TRUE);
 }
 

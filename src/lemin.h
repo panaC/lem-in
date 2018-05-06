@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 23:45:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 00:37:00 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ typedef struct		s_env
 	 */
 	t_list			*tab_path[NB_PATH];
 	size_t			tab_path_size;
+
+	/*
+	 * ants move
+	 */
+	size_t			tab_path_node_size;
+	t_uint32		tab_path_node[NB_PATH];
+	t_uint32		nb_ants_moving;
+
 
 }					t_env;
 

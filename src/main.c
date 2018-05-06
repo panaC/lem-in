@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:32:55 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 23:46:25 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 02:08:40 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "parser.h"
 #include "room.h"
 #include "algo.h"
+#include "move.h"
 
 int		main(void)
 {
@@ -94,6 +95,8 @@ int		main(void)
 				++i;
 			}
 			/****************************************/
+			printf("Start Move :\n");
+			move_while(&e);
 		}
 		else
 		{

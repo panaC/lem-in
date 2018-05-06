@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:36:44 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 07:42:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:48:18 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_string		*parser_room_get(t_env *e, t_string l)
 {
 	t_string	*tab;
 
-	if (ft_strnbchr(l , '-') == 1)
+	if (ft_strnbchr(l, '-') == 1)
 	{
 		tab = ft_strsplit(l, '-');
 		if (tab)
@@ -43,7 +43,7 @@ t_string		*parser_room_get_err(t_env *e, t_string l)
 {
 	t_string	*tab;
 
-	if (ft_strnbchr(l , '-') == 1)
+	if (ft_strnbchr(l, '-') == 1)
 	{
 		tab = ft_strsplit(l, '-');
 		if (tab)
@@ -64,7 +64,7 @@ t_string		*parser_room_get_err(t_env *e, t_string l)
 	}
 	else
 		ft_sprintf(&e->str_err, "Syntax error pipe %d '-'\n",
-				ft_strnbchr(l , '-'));
+				ft_strnbchr(l, '-'));
 	return (NULL);
 }
 

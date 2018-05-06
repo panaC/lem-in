@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 08:07:56 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 08:16:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:40:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void			bfs_recurs_end(t_list **prev, t_list **actl)
 	}
 }
 
-void			bfs_recurs_search(t_env *e, int id, t_list **prev, t_list **actl)
+void			bfs_recurs_search(t_env *e, int id, t_list **prev,
+		t_list **actl)
 {
 	t_room		*a;
 
@@ -68,5 +69,4 @@ void			bfs_recurs_search(t_env *e, int id, t_list **prev, t_list **actl)
 			ft_lstpull(actl);
 		}
 	}
-
 }

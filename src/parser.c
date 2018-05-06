@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 07:39:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:45:20 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		parser_nb_ant(t_env *e, t_string l)
 	}
 	else
 	{
-		ft_sprintf(&e->str_err, "Wrong ants numbers (%d digit)\n", 
+		ft_sprintf(&e->str_err, "Wrong ants numbers (%d digit)\n",
 				ft_strlennb(l));
 	}
 	return (ERROR_CODE);
@@ -74,7 +74,7 @@ int		parser_room(t_env *e, t_string l)
 		i = END;
 	else if (l && *l && ft_strlen(l) >= 5 && l[0] != 'L')
 	{
-		if (ft_strnbchr(l , ' ') == 2)
+		if (ft_strnbchr(l, ' ') == 2)
 		{
 			if (parser_room_line(e, l, &i, &ss))
 				return (ROOM_CODE);
@@ -94,7 +94,7 @@ int		parser_pipe(t_env *e, t_string l)
 	static int			i = 0;
 	t_string			*tab;
 	t_room				*a;
-	t_room 				*b;
+	t_room				*b;
 
 	if (i == 0 && parser_pipe_init(e) > EMPTY_CODE)
 		return (ERROR_CODE);

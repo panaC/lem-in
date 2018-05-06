@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:55:28 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 22:56:14 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:50:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void			*room_cmp_loc(void *elem, void *data)
 	t_room		*room;
 
 	room = (t_room*)elem;
-
-	if (room->loc.x == ((t_point*)data)->x && room->loc.y == ((t_point*)data)->y)
+	if (room->loc.x == ((t_point*)data)->x &&
+			room->loc.y == ((t_point*)data)->y)
 		return (elem);
 	return (NULL);
 }

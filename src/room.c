@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:09:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 23:02:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:48:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool			room_set_mat(t_env *e, int i1, int i2)
 t_string		room_get_name(t_env *e, int id)
 {
 	t_room		*ret;
-	
+
 	ret = (t_room*)ft_lstfind(e->lst_room, (void*)&id, room_cmp_id);
 	if (ret)
 		return (ret->name);

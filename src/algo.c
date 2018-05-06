@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:27:35 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 08:23:39 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:38:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "room.h"
 #include "algo.h"
 
-t_bool			algo_pathfinder(t_env *e)
+t_bool		algo_pathfinder(t_env *e)
 {
 	t_list		*previous;
 	t_list		*actual;

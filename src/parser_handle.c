@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 06:36:39 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 07:10:30 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:47:42 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void		parser_get_map(t_env *e)
 			res = parser(e, line);
 			ft_memdel((void**)&line);
 			if (res == 0)
-				break;
+				break ;
 		}
 		else
-			break;
+			break ;
 	}
 	ft_memdel((void**)&line);
 }
@@ -96,5 +96,3 @@ void		parser_verbose(t_env *e)
 		}
 	}
 }
-
-

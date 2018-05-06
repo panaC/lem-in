@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 02:45:56 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 23:17:39 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:40:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,4 @@ t_bool		path_tab_check_size_one(t_env *e)
 		++i;
 	}
 	return (FALSE);
-
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 00:11:20 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 07:58:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:43:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		move_while(t_env *e)
 	size_t		i;
 	t_room		*to;
 	t_list		*l;
-	
+
 	move_init(e);
 	i = 0;
 	while (e->room_end->nb_ant < e->nb_ant_start)

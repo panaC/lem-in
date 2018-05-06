@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 06:59:37 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 08:53:29 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ typedef struct		s_room
 	int				id;
 	t_string		name;
 	t_uint32		id_ant;
-
-	/*
-	 * only start ou end
-	 */
 	t_uint32		nb_ant;
-
 	t_e_type		type;
 	t_point			loc;
 }					t_room;
@@ -49,53 +44,32 @@ typedef struct		s_room
 typedef struct		s_env
 {
 	t_bool			verbose;
-	/*
-	 * ROOM
-	 */
 	t_list			*lst_room;
 	t_room			*room_start;
 	t_room			*room_end;
-	
-	/*
-	 * PIPE
-	 */
 	t_string		mat_adj;
 	size_t			mat_size;
-
-	/*
-	 * tmp
-	 */
 	t_uint32		nb_ant_start;
 	t_string		str_err;
-
-	/*
-	 * path
-	 */
 	t_list			*tab_path[NB_PATH];
 	size_t			tab_path_size;
-
-	/*
-	 * ants move
-	 */
 	size_t			tab_path_node_size;
 	t_uint32		tab_path_node[NB_PATH];
 	t_uint32		nb_ants_moving;
-
-
 }					t_env;
 
 /*
- * init.c
- */
-t_bool		init(t_env *e);
+** init.c
+*/
+t_bool				init(t_env *e);
 
 /*
- * del.c
- */
-void		del_lst_node_empty(__attribute__ ((unused)) void *a,
+** del.c
+*/
+void				del_lst_node_empty(__attribute__ ((unused)) void *a,
 		__attribute__ ((unused)) size_t b);
-void		del_lst_node(void *a, size_t b);
-void		del_tab_path(t_env *e);
-void		del_all(t_env *e);
+void				del_lst_node(void *a, size_t b);
+void				del_tab_path(t_env *e);
+void				del_all(t_env *e);
 
 #endif

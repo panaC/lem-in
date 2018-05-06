@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/05 03:12:37 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 23:45:23 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 07:35:45 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,16 @@ void		del_tab_path(t_env *e)
 
 void		del_all(t_env *e)
 {
+	t_list	*l;
+
+	l = e->lst_room;
+	while (l)
+	{
+		ft_strdel(&(((t_room*)l->content)->name));
+		l = l->next;
+	}
 	ft_lstdel(&(e->lst_room), del_lst_node);
 	del_tab_path(e);
 	ft_memdel((void**)&(e->mat_adj));
+	ft_strdel(&(e->str_err));
 }

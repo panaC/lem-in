@@ -6,10 +6,11 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:36:44 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 23:15:46 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 07:42:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <libft.h>
 #include <ft_printf.h>
 #include "lemin.h"
@@ -30,6 +31,9 @@ t_string		*parser_room_get(t_env *e, t_string l)
 				if (ft_lstfind(e->lst_room, (void*)tab[1], room_cmp_name))
 					return (tab);
 			}
+			ft_strdel(&(tab[0]));
+			ft_strdel(&(tab[1]));
+			free(tab);
 		}
 	}
 	return (NULL);
@@ -72,11 +76,9 @@ t_bool			parser_room_is_valid(t_env *e, t_string l)
 	tab = parser_room_get(e, l);
 	if (tab)
 	{
-		//Abort
-		//printf("FREE\n");
-		//ft_memdel((void*)tab[0]);
-		//ft_memdel((void*)tab[1]);
-		//free(tab);
+		ft_strdel(&(tab[0]));
+		ft_strdel(&(tab[1]));
+		free(tab);
 		return (TRUE);
 	}
 	return (FALSE);

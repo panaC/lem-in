@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 15:10:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 00:06:10 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 07:39:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ t_bool			parser_room_set_list(t_env *e, t_string ss, t_point loc,
 					ss, loc, END);
 		else
 			room_add_lst(&(e->lst_room), ss, loc, NODE);
-		//abort
-		//ft_memdel((void**)ss);
 		*i = EMPTY;
 		return (TRUE);
 	}
@@ -77,5 +75,7 @@ t_bool			parser_room_line(t_env *e, t_string l, t_e_type *i,
 		else
 			ft_sprintf(&e->str_err, "Room %.20s is already set\n", *ss);
 	}
+	else
+		ft_sprintf(&e->str_err, "Room name %.20s is wrong\n", ss);
 	return (FALSE);
 }

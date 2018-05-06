@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 06:37:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 07:39:35 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		parser_room(t_env *e, t_string l)
 	static t_e_type		i = EMPTY;
 	t_string			ss;
 
+	ss = NULL;
 	if (l && parser_room_is_valid(e, l))
 		return (parser_pipe(e, l));
 	if (ft_strequ(l, COM_START) && i == EMPTY)
@@ -77,8 +78,6 @@ int		parser_room(t_env *e, t_string l)
 		{
 			if (parser_room_line(e, l, &i, &ss))
 				return (ROOM_CODE);
-			else
-				ft_sprintf(&e->str_err, "Room name %.20s is wrong\n", ss);
 		}
 		else
 			ft_sprintf(&e->str_err, "Wrong line %d ' '\n", ft_strnbchr(l, ' '));
@@ -86,6 +85,7 @@ int		parser_room(t_env *e, t_string l)
 	else
 		ft_sprintf(&e->str_err, "Line error (%ld char) %s\n", ft_strlen(l),
 				l[0] == 'L' ? " -> 'L' forbidden" : "");
+	ft_strdel(&ss);
 	return ((e->str_err == NULL) ? ROOM_CODE : ERROR_CODE);
 }
 
@@ -105,10 +105,9 @@ int		parser_pipe(t_env *e, t_string l)
 		a = ((t_room*)ft_lstfind(e->lst_room, (void*)tab[0], room_cmp_name));
 		b = ((t_room*)ft_lstfind(e->lst_room, (void*)tab[1], room_cmp_name));
 		room_set_mat(e, a->id, b->id);
-		//Abort
-		//ft_memdel((void*)tab[0]);
-		//ft_memdel((void*)tab[1]);
-		//free(tab);
+		ft_strdel(&(tab[0]));
+		ft_strdel(&(tab[1]));
+		free(tab);
 		return (PIPE_CODE);
 	}
 	else

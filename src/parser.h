@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 16:57:46 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/05 00:05:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 07:06:35 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,12 @@ t_bool			parser_room_set_list(t_env *e, t_string s, t_point loc,
 		t_e_type *i);
 t_bool			parser_room_line(t_env *e, t_string l, t_e_type *i,
 		t_string *ss);
+
+/*
+ * parser_handle.c
+ */
+void			parser_get_map(t_env *e);
+void			parser_algo(t_env *e);
+void			parser_verbose(t_env *e);
 
 #endif

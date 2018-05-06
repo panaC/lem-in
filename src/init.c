@@ -6,15 +6,16 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:59:46 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 00:54:59 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 06:59:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "lemin.h"
 
-int			init(t_env *e)
+t_bool		init(t_env *e)
 {
+	e->verbose = FALSE;
 	e->lst_room = NULL;
 	e->mat_adj = NULL;
 	e->room_start = NULL;
@@ -27,5 +28,3 @@ int			init(t_env *e)
 	e->tab_path_node_size = 0;
 	return (TRUE);
 }
-
-

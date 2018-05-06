@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 00:37:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/06 06:59:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_room
 
 typedef struct		s_env
 {
+	t_bool			verbose;
 	/*
 	 * ROOM
 	 */
@@ -83,7 +84,10 @@ typedef struct		s_env
 
 }					t_env;
 
-int			init(t_env *e);
+/*
+ * init.c
+ */
+t_bool		init(t_env *e);
 
 /*
  * del.c

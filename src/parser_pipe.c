@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 22:36:44 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/08 13:22:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/08 14:24:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ t_string		*parser_room_get(t_env *e, t_string l)
 				if (ft_lstfind(e->lst_room, (void*)tab[1], room_cmp_name))
 					return (tab);
 			}
-			ft_strdel(&(tab[0]));
-			ft_strdel(&(tab[1]));
-			free(tab);
 		}
+		del_room_tab_err(tab);
 	}
 	return (NULL);
 }
@@ -50,9 +48,7 @@ t_string		*parser_room_get_err(t_env *e, t_string l)
 		{
 			if (ft_lstfind(e->lst_room, (void*)tab[0], room_cmp_name))
 			{
-				if (ft_lstfind(e->lst_room, (void*)tab[1], room_cmp_name))
-					return (NULL);
-				else
+				if (!ft_lstfind(e->lst_room, (void*)tab[1], room_cmp_name))
 					ft_sprintf(&e->str_err, "Room right %.20s is unknow\n",
 							tab[1]);
 			}
@@ -61,6 +57,7 @@ t_string		*parser_room_get_err(t_env *e, t_string l)
 		}
 		else
 			ft_sprintf(&e->str_err, "Pipe error\n");
+		del_room_tab_err(tab);
 	}
 	else
 		ft_sprintf(&e->str_err, "Syntax error pipe %d '-'\n",

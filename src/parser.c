@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/08 13:26:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/08 14:37:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		parser_room(t_env *e, t_string l)
 	t_string			ss;
 
 	ss = NULL;
-	if (l && parser_room_is_valid(e, l))
+	if (l && parser_room_is_valid(e, l) && i == EMPTY)
 		return (parser_pipe(e, l));
 	if (ft_strequ(l, COM_START) && i == EMPTY)
 		i = START;

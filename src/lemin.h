@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:53:34 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/08 13:41:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/08 14:06:50 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_bool				init(t_env *e);
 */
 void				del_lst_node_empty(void *a, size_t b);
 void				del_lst_node(void *a, size_t b);
+void				del_room_tab_err(t_string *t);
 void				del_tab_path(t_env *e);
 void				del_all(t_env *e);
 

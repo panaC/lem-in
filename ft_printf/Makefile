@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/02 12:44:40 by pleroux           #+#    #+#              #
-#    Updated: 2018/05/04 21:17:54 by pleroux          ###   ########.fr        #
+#    Updated: 2018/05/08 12:51:18 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRC_FILE = format_c.c \
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ = $(SRC:.c=.o)
 
-all : $(NAME)
+all : $(LIB) $(NAME)
 
-$(NAME) : $(LIB) $(OBJ)
+$(NAME) : $(OBJ)
 	ar rcs $(LIB_PRINTF) $(OBJ)
 	libtool -static -o $(NAME) $(LIB_PRINTF) $(LIB)
 	rm -f $(LIB_PRINTF)
@@ -54,7 +54,6 @@ clean	:
 
 fclean	: clean
 	rm -f $(NAME)
-	make -C $(LIB_PATH) fclean
 
 re		: clean all
 

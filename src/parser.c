@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 14:08:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/06 08:45:20 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/08 13:26:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int		parser(t_env *e, t_string l)
 	static int		i = START_CODE;
 
 	if (parser_is_comment(l) || parser_is_command(l))
+	{
+		ft_putstr(l);
+		ft_putchar('\n');
 		return (i);
+	}
 	if (i == START_CODE)
 		i = parser_nb_ant(e, l);
 	else if (i == ROOM_CODE)

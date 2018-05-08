@@ -6,11 +6,10 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 13:08:19 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/04 23:21:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/08 15:15:15 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <libft.h>
 #include "parser.h"
 #include "lemin.h"

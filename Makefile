@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/05/08 12:52:15 by pleroux          ###   ########.fr        #
+#    Updated: 2018/05/09 16:26:09 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,15 @@ LIB = libft/libft.a
 LIB_PATH = libft/
 LIB_HEADER = libft/includes
 LIB_LINK = ft
-CFLAGS = -I$(LIB_HEADER)  -I $(LIB_PRINTF_HEADER) -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -I $(LIB_HEADER) -I $(LIB_PRINTF_HEADER)
 LIB_FLAGS = -L$(LIB_PATH) -l$(LIB_LINK) \
 			-L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK)
 SRC_DIR = src/
+INC_FILE = algo.h \
+		   lemin.h \
+		   move.h \
+		   parser.h \
+		   room.h
 SRC_FILE = algo.c \
 		   init.c \
 		   parser.c \
@@ -44,6 +49,7 @@ SRC_FILE = algo.c \
 		   parser_room.c \
 		   room_set.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
+INC = $(addprefix $(SRC_DIR), $(INC_FILE))
 OBJ = $(SRC:.c=.o)
 
 all		: $(LIB) $(LIB_PRINTF) $(NAME)
@@ -53,6 +59,9 @@ $(LIB)	:
 
 $(LIB_PRINTF)	:
 	make -C $(LIB_PRINTF_PATH)
+
+%.o: %.c $(INC)
+	     $(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME)	: $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIB_FLAGS)
